@@ -91,7 +91,53 @@ Detailed per-node metrics including CPU and memory usage.
 - SSH access limited to authorized users
 
 ---
+## 🛠️ Build Process (High-Level)
 
+1. Provisioned Linux nodes (Ubuntu) for control plane and workers  
+2. Installed and configured Tailscale on all nodes for secure mesh networking  
+3. Initialized k3s control plane on the master node  
+4. Joined worker nodes using the k3s node token  
+5. Forced node IP assignment to Tailscale interface (100.x.x.x) to avoid network conflicts  
+6. Deployed kube-prometheus-stack for monitoring (Prometheus + Grafana)  
+7. Verified cluster health and metrics via kubectl and Grafana dashboards  
+
+---
+
+## 🛠️ Troubleshooting Highlights
+
+### Node joined with incorrect IP (192.x instead of 100.x)
+- **Cause:** k3s auto-selected the wrong network interface  
+- **Fix:** Forced node IP during install:
+```bash
+INSTALL_K3S_EXEC="agent --node-ip=<tailscale-ip>"
+```
+
+---
+
+### Duplicate nodes after renaming
+- **Cause:** Kubernetes treats renamed nodes as new nodes  
+- **Fix:**
+```bash
+kubectl delete node <old-node-name>
+```
+
+---
+
+### Node stuck in `NotReady`
+- **Cause:** k3s agent not running or misconfigured  
+- **Fix:**
+```bash
+sudo systemctl restart k3s-agent
+```
+
+---
+
+### Grafana not accessible externally
+- **Cause:** Service exposed as ClusterIP (internal only)  
+- **Fix:**
+```bash
+kubectl port-forward svc/monitoring-grafana 3000:80
+```
 ## 🔮 Future Improvements
 
 - Migrate from Tailscale to native WireGuard
