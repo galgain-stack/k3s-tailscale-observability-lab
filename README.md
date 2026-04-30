@@ -55,11 +55,31 @@ Grafana dashboards used:
 
 ## 📸 Screenshots
 
-_(Add screenshots here)_
+### 🖥️ Cluster Nodes
+Shows all nodes in the cluster running and connected via Tailscale.
 
-Example:
-```
-![Cluster Dashboard](screenshots/cluster-dashboard.png)
+![Cluster Nodes](screenshots/kubectl-nodes.png)
+
+---
+
+### 📦 Monitoring Stack (Pods)
+Prometheus, Grafana, and node exporters running inside the cluster.
+
+![Monitoring Pods](screenshots/kubectl-pods.png)
+
+---
+
+### 📊 Cluster Resource Dashboard
+Grafana dashboard showing CPU and memory usage across the cluster.
+
+![Grafana Cluster](screenshots/grafana-cluster.png)
+
+---
+
+### 🧠 Node-Level Metrics
+Detailed per-node metrics including CPU and memory usage.
+
+![Grafana Node](screenshots/grafana-node.png)
 ```
 
 ---
