@@ -80,7 +80,7 @@ Grafana dashboard showing CPU and memory usage across the cluster.
 Detailed per-node metrics including CPU and memory usage.
 
 ![Grafana Node](screenshots/grafana-node.png)
-```
+
 
 ---
 
