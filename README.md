@@ -91,7 +91,7 @@ Detailed per-node metrics including CPU and memory usage.
 - SSH access limited to authorized users
 
 ---
-## 🛠️ Build Process (High-Level)
+## 🛠️ Build Process 
 
 1. Provisioned Linux nodes (Ubuntu) for control plane and workers  
 2. Installed and configured Tailscale on all nodes for secure mesh networking  
